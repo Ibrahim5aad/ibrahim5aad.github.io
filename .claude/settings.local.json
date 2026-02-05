@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start \"\" \"d:\\\\Side Projects\\\\ibrahim5aad.github.io\\\\index.html\")",
+      "WebFetch(domain:www.youtube.com)",
+      "WebFetch(domain:noembed.com)",
+      "WebFetch(domain:www.linkedin.com)",
+      "Bash(npx -y serve .)",
+      "Bash(start \"\" \"http://localhost:3000\")",
+      "WebFetch(domain:diroots.com)",
+      "WebFetch(domain:aecinspire.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:xbim.net)",
+      "WebFetch(domain:himatt.com)",
+      "WebFetch(domain:www.instagram.com)",
+      "Bash(curl:*)",
+      "WebFetch(domain:substack.com)",
+      "Bash(gh repo view:*)",
+      "Bash(gh pr view:*)"
+    ]
+  }
+}

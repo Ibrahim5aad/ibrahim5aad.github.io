@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Kuhn-Munkres Algorithm",
+    "description": "A Python implementation of the Hungarian Method for solving assignment problems in polynomial time. Features an interactive Tkinter GUI for matrix input and real-time solving.",
+    "tags": ["Python", "Tkinter", "Algorithms"],
+    "link": "https://github.com/Ibrahim5aad/kuhn-munkres-algorithm"
+  },
+  {
+    "title": "Octopus",
+    "description": "An open-source SDK and scaffold for building BIM applications with .NET 9. Includes a Blazor component library with 3D IFC viewer, a REST API server for model management, and supports standalone or full-platform modes.",
+    "tags": ["C#", ".NET", "Blazor", "Web", "BIM", "IFC", "Open Source"],
+    "link": "https://github.com/Ibrahim5aad/Octopus"
+  },
+  {
+    "title": "Electron.js Revit Add-in",
+    "description": "An MVC multi-process-architectured Revit add-in where the View layer is an Electron.js app communicating with the Revit add-in through named pipes IPC.",
+    "tags": ["C#", "Electron.js", "Revit API", "IPC"],
+    "link": "https://github.com/Ibrahim5aad/electronjs-revit-addin"
+  },
+  {
+    "title": "WexThreeJS",
+    "description": "A React Three.js library for viewing WexBIM 3D models. Provides reusable components including a 3D viewer, toolbar, and built-in controls for displaying and interacting with building models.",
+    "tags": ["TypeScript", "React", "Three.js", "3D", "BIM", "Open Source"],
+    "link": "https://github.com/Ibrahim5aad/wex-threejs"
+  }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "title": "SiRDA",
+    "year": "2020",
+    "context": "ITI Graduation Project",
+    "description": "Structural Rebar Detailing Automation — generates shop drawings, quantity surveying data, and Bill of Quantities. Integrates with Etabs/SAP for section design and supports DXF and IFC output formats for interoperability.",
+    "tags": ["C#", ".NET", "OpenCascade", "VTK", "BIM", "IFC"],
+    "link": "https://www.youtube.com/watch?v=CTEHid6O9uA"
+  },
+  {
+    "title": "PPE Custom Revit Add-in",
+    "year": "2021",
+    "context": "DiRoots",
+    "description": "Custom add-in that automates structural beam detailing in Revit — creates section views, reinforcement detailing with automated annotation, tagging, and dimensioning. Achieved ~90% time optimization for the detailing workflow.",
+    "tags": ["C#", "Revit API", "BIM", "Automation", "Computational Geometry"],
+    "link": "https://diroots.com/custom-software-development/case-studies/revit-automation-ppe-custom-add-in/"
+  },
+  {
+    "title": "Tecomat Blockwork Automation",
+    "year": "2021",
+    "context": "DiRoots",
+    "description": "Custom Revit add-in that converts generic walls into individual brick/block elements, eliminating manual placement. Supports multiple selection modes, configurable joint patterns, and automatic grouping with wall mark parameters.",
+    "tags": ["C#", "Revit API", "BIM", "Automation", "Computational Geometry"],
+    "link": "https://diroots.com/custom-software-development/case-studies/revit-automation-tecomat-custom-revit-add-in/"
+  },
+  {
+    "title": "ParaManager",
+    "year": "2021",
+    "context": "DiRoots",
+    "description": "Free Revit add-in for managing parameters in project and family environments. Create, modify, export/import parameters from Excel and shared parameter files, and transfer parameters between families without opening them individually.",
+    "tags": ["C#", "Revit API", "WPF", "BIM", "Automation"],
+    "link": "https://diroots.com/revit-plugins/manage-revit-parameters-in-projects-and-families-with-paramanager/"
+  },
+  {
+    "title": "OneFilter",
+    "year": "2021",
+    "context": "DiRoots",
+    "description": "Free Revit plugin to quickly find, filter, and colorize Revit families. Search by category, parameter name or value, and locate elements within rooms, spaces, and areas.",
+    "tags": ["C#", "Revit API", "WPF", "BIM"],
+    "link": "https://diroots.com/revit-plugins/revit-advanced-filter-onefilter/"
+  },
+  {
+    "title": "SheetGen",
+    "year": "2021",
+    "context": "DiRoots",
+    "description": "Free Revit add-in that automates sheet creation and view placement. Batch-create sheets, place views based on pre-defined templates, and manage sheet revisions efficiently.",
+    "tags": ["C#", "Revit API", "WPF", "BIM", "Automation"],
+    "link": "https://diroots.com/revit-plugins/batch-create-revit-sheets-and-place-views-with-sheetgen/"
+  },
+  {
+    "title": "AECInspire",
+    "year": "2022",
+    "context": "AECInspire",
+    "description": "Material management platform for electrical contractors. Automates project takeoffs with symbol counting and bill of materials generation, prefabrication planning, and installation coordination.",
+    "tags": ["C#", "WPF", "ASP.NET", "Cloud", "AEC", "BIM", "Forge", "APS", "Autodesk", "Revit API"],
+    "link": "https://aecinspire.com/"
+  },
+  {
+    "title": "IFC4x3 Spiral buildingSMART Documentation",
+    "year": "2025",
+    "context": "buildingSMART (Open Source)",
+    "description": "Added documentation for IfcSineSpiral and IfcCosineSpiral in the IFC4x3 specification. Corrected mathematical notation and improved descriptive content for these geometric spiral entity definitions.",
+    "tags": ["IFC", "BIM", "Open Source", "OpenBIM", "buildingSMART"],
+    "link": "https://github.com/buildingSMART/IFC4.3.x-development/pull/922"
+  },
+  {
+    "title": "xbim Geometry Engine — IFC4x3",
+    "year": "2024",
+    "context": "xbim Team (Open Source)",
+    "description": "Implemented IFC4x3 curve geometry support in the xbim Geometry Engine. Built OpenCascade extensions for Clothoid, Cosine Spiral, Sine Spiral, Polynomial, and Polynomial Spiral 2D curve segments, added IfcPolynomialCurve support, and implemented GradientCurve reparameterization for alignment geometry.",
+    "tags": ["C++", "OpenCascade", "IFC", "BIM", "Open Source", "Computational Geometry", "C++/CLI"],
+    "link": "https://github.com/xBimTeam/XbimGeometry"
+  },
+  {
+    "title": "xbim Mesh Simplifier",
+    "year": "2025",
+    "context": "xbim Team (Open Source)",
+    "description": "Built a triangulated mesh simplifier for the xbim Geometry Engine based on the Garland-Heckbert algorithm. Reduces triangle count while preserving geometric quality through edge-based vertex pair contractions with manifoldness and link condition validation.",
+    "tags": ["C++", "BIM", "Open Source", "Computational Geometry", "C++/CLI"],
+    "link": "https://github.com/xBimTeam/XbimGeometry/pull/543"
+  },
+  {
+    "title": "Wexbim Viewer — Interactive Clipping",
+    "year": "2025",
+    "context": "xbim Team (Open Source)",
+    "description": "Built the InteractiveSectionBox plugin for the xbim WebUI viewer. Allows users to interactively modify clipping/section boxes in 3D BIM models in real-time. Implemented with custom vertex and fragment shaders for rendering the dynamic cutting plane.",
+    "tags": ["TypeScript", "WebGL", "GLSL", "3D", "BIM", "Open Source", "Computational Geometry"],
+    "link": "https://github.com/xBimTeam/XbimWebUI/tree/master/src/plugins/InteractiveSectionBox"
+  },
+  {
+    "title": "Flex Flow",
+    "year": "2022–2025",
+    "context": "xbim",
+    "description": "Cloud-based platform for automating IFC model validation and reporting. Define and run repeatable model audits, identify semantic and geometric issues, and export actionable results. Built on OpenBIM standards with support for IFC, IDS, and BCF formats.",
+    "tags": ["C#", "ASP.NET", "Cloud", "Web", "IFC", "BIM", "Computational Geometry", "Azure", "Blazor", "Autodesk", "Revit API", "OpenBIM"],
+    "link": "https://xbim.net/flex-flow/"
+  },
+  {
+    "title": "Wexbim Viewer — Data Visualization",
+    "year": "2025",
+    "context": "xbim Team (Open Source)",
+    "description": "Built the DataVisualization plugin for the xbim WebUI viewer. Includes a heatmap system with multiple coloring strategies — constant, continuous gradient, discrete categorical, and value-range mapping — plus an icons module for overlaying data markers on 3D BIM models.",
+    "tags": ["TypeScript", "WebGL", "3D", "BIM", "Open Source", "Computational Geometry"],
+    "link": "https://github.com/xBimTeam/XbimWebUI/tree/master/src/plugins/DataVisualization"
+  }
+]
