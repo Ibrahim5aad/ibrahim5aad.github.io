@@ -1,7 +1,7 @@
 [
   {
     "title": "BIM Quests",
-    "description": "A gamified IFC viewer — a first-person exploration game built inside IFC/BIM models. Navigate through architectural designs, inspect building elements, and explore 3D spaces interactively.",
+    "description": "A gamified IFC viewer — an exploration game built inside IFC/BIM models with first-person and third-person modes. Navigate through architectural designs, inspect building elements, and explore 3D spaces interactively.",
     "tags": ["TypeScript", "React", "Three.js", "Vite", "3D", "BIM", "IFC", "Game"],
     "link": "https://bim-quests.com/",
     "inProgress": true
