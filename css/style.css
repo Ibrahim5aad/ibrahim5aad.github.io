@@ -442,6 +442,16 @@ small, .text-secondary {
   white-space: nowrap;
 }
 
+.card__status {
+  font-size: 0.7rem;
+  color: #fff;
+  background: #22c55e;
+  padding: 0.175rem 0.6rem;
+  border-radius: 100px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
 .card__meta {
   font-size: 0.8125rem;
   color: var(--color-text-light-secondary);

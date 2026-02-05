@@ -257,10 +257,15 @@ function renderCard(item) {
     ? `<span class="card__year">${item.year}</span>`
     : '';
 
+  const inProgress = item.inProgress
+    ? `<span class="card__status">In Progress</span>`
+    : '';
+
   return `
     <article class="card">
       <div class="card__header">
         <h3 class="card__title">${item.title}</h3>
+        ${inProgress}
         ${year}
       </div>
       ${meta}
