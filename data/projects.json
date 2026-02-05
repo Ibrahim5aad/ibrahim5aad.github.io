@@ -1,5 +1,11 @@
 [
   {
+    "title": "BIM Quests",
+    "description": "A gamified IFC viewer — a first-person exploration game built inside IFC/BIM models. Navigate through architectural designs, inspect building elements, and explore 3D spaces interactively.",
+    "tags": ["TypeScript", "React", "Three.js", "Vite", "3D", "BIM", "IFC", "Game"],
+    "link": "https://bim-quests.com/"
+  },
+  {
     "title": "Kuhn-Munkres Algorithm",
     "description": "A Python implementation of the Hungarian Method for solving assignment problems in polynomial time. Features an interactive Tkinter GUI for matrix input and real-time solving.",
     "tags": ["Python", "Tkinter", "Algorithms"],
