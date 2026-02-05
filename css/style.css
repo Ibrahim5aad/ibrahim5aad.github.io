@@ -471,9 +471,15 @@ small, .text-secondary {
   letter-spacing: 0.01em;
 }
 
+.card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
 .card__link {
   display: inline-block;
-  margin-top: var(--spacing-sm);
   font-size: 0.875rem;
   color: var(--color-text-light);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);

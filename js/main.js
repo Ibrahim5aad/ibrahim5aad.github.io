@@ -243,9 +243,11 @@ function renderCard(item) {
     .map(t => `<span class="card__tag">${t}</span>`)
     .join('');
 
-  const link = item.link
-    ? `<a class="card__link" href="${item.link}" target="_blank" rel="noopener">${linkLabel(item.link)} &rarr;</a>`
-    : '';
+  // Support both single link and links array
+  const allLinks = item.links || (item.link ? [item.link] : []);
+  const linksHtml = allLinks
+    .map(url => `<a class="card__link" href="${url}" target="_blank" rel="noopener">${linkLabel(url)} &rarr;</a>`)
+    .join('');
 
   const meta = item.context
     ? `<div class="card__meta">${item.context}</div>`
@@ -264,7 +266,7 @@ function renderCard(item) {
       ${meta}
       <p class="card__description">${item.description}</p>
       ${tags ? `<div class="card__tags">${tags}</div>` : ''}
-      ${link}
+      ${linksHtml ? `<div class="card__links">${linksHtml}</div>` : ''}
     </article>
   `;
 }

@@ -1,5 +1,21 @@
 [
   {
+    "title": "Industry Foundation Classes Presentation",
+    "year": "2019",
+    "context": "ITI BIM Fundamentals Course",
+    "description": "A comprehensive presentation on IFC covering fundamentals, data modeling with EXPRESS schema, the IFC data model structure, attributes and properties management, and future developments including IFC5.0 and IFC JSON.",
+    "tags": ["IFC", "BIM", "OpenBIM", "EXPRESS"],
+    "link": "https://www.linkedin.com/feed/update/urn:li:activity:6614354181186695168/"
+  },
+  {
+    "title": "IFCtoRevit Plugin",
+    "year": "2020",
+    "context": "Personal Project",
+    "description": "A Revit add-in for importing IFC files into Revit, enabling interoperability between IFC-based workflows and Autodesk Revit projects.",
+    "tags": ["C#", "Revit API", "IFC", "BIM", "Interoperability"],
+    "link": "https://www.youtube.com/watch?v=sGKHa4ep-xE"
+  },
+  {
     "title": "SiRDA",
     "year": "2020",
     "context": "ITI Graduation Project",
@@ -28,7 +44,7 @@
     "year": "2021",
     "context": "DiRoots",
     "description": "Free Revit add-in for managing parameters in project and family environments. Create, modify, export/import parameters from Excel and shared parameter files, and transfer parameters between families without opening them individually.",
-    "tags": ["C#", "Revit API", "WPF", "BIM", "Automation"],
+    "tags": ["C#", ".NET", "Revit API", "WPF", "BIM", "Automation"],
     "link": "https://diroots.com/revit-plugins/manage-revit-parameters-in-projects-and-families-with-paramanager/"
   },
   {
@@ -36,7 +52,7 @@
     "year": "2021",
     "context": "DiRoots",
     "description": "Free Revit plugin to quickly find, filter, and colorize Revit families. Search by category, parameter name or value, and locate elements within rooms, spaces, and areas.",
-    "tags": ["C#", "Revit API", "WPF", "BIM"],
+    "tags": ["C#", ".NET", "Revit API", "WPF", "BIM"],
     "link": "https://diroots.com/revit-plugins/revit-advanced-filter-onefilter/"
   },
   {
@@ -44,7 +60,7 @@
     "year": "2021",
     "context": "DiRoots",
     "description": "Free Revit add-in that automates sheet creation and view placement. Batch-create sheets, place views based on pre-defined templates, and manage sheet revisions efficiently.",
-    "tags": ["C#", "Revit API", "WPF", "BIM", "Automation"],
+    "tags": ["C#", ".NET", "Revit API", "WPF", "BIM", "Automation"],
     "link": "https://diroots.com/revit-plugins/batch-create-revit-sheets-and-place-views-with-sheetgen/"
   },
   {
@@ -52,7 +68,7 @@
     "year": "2022",
     "context": "AECInspire",
     "description": "Material management platform for electrical contractors. Automates project takeoffs with symbol counting and bill of materials generation, prefabrication planning, and installation coordination.",
-    "tags": ["C#", "WPF", "ASP.NET", "Cloud", "AEC", "BIM", "Forge", "APS", "Autodesk", "Revit API"],
+    "tags": ["C#", ".NET", "WPF", "ASP.NET", "Cloud", "AEC", "BIM", "Forge", "APS", "Autodesk", "Revit API"],
     "link": "https://aecinspire.com/"
   },
   {
@@ -76,7 +92,7 @@
     "year": "2025",
     "context": "xbim Team (Open Source)",
     "description": "Built a triangulated mesh simplifier for the xbim Geometry Engine based on the Garland-Heckbert algorithm. Reduces triangle count while preserving geometric quality through edge-based vertex pair contractions with manifoldness and link condition validation.",
-    "tags": ["C++", "BIM", "Open Source", "Computational Geometry", "C++/CLI"],
+    "tags": ["C++", ".NET", "BIM", "Open Source", "Computational Geometry", "C++/CLI"],
     "link": "https://github.com/xBimTeam/XbimGeometry/pull/543"
   },
   {
@@ -92,7 +108,7 @@
     "year": "2022–2025",
     "context": "xbim",
     "description": "Cloud-based platform for automating IFC model validation and reporting. Define and run repeatable model audits, identify semantic and geometric issues, and export actionable results. Built on OpenBIM standards with support for IFC, IDS, and BCF formats.",
-    "tags": ["C#", "ASP.NET", "Cloud", "Web", "IFC", "BIM", "Computational Geometry", "Azure", "Blazor", "Autodesk", "Revit API", "OpenBIM"],
+    "tags": ["C#", ".NET", "ASP.NET", "Cloud", "Web", "IFC", "BIM", "Computational Geometry", "Azure", "Azure DevOps", "Azure Functions", "WebGL", "Blazor", "Autodesk", "Revit API", "OpenBIM"],
     "link": "https://xbim.net/flex-flow/"
   },
   {

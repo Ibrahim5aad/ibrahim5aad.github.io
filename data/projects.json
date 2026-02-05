@@ -15,7 +15,10 @@
     "title": "Electron.js Revit Add-in",
     "description": "An MVC multi-process-architectured Revit add-in where the View layer is an Electron.js app communicating with the Revit add-in through named pipes IPC.",
     "tags": ["C#", "Electron.js", "Revit API", "IPC"],
-    "link": "https://github.com/Ibrahim5aad/electronjs-revit-addin"
+    "links": [
+      "https://github.com/Ibrahim5aad/electronjs-revit-addin",
+      "https://www.youtube.com/watch?v=mZNcB3x0PTk"
+    ]
   },
   {
     "title": "WexThreeJS",
