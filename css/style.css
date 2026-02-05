@@ -198,6 +198,7 @@ small, .text-secondary {
 
 .hero__links {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-sm);
 }
 
