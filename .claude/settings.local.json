@@ -16,7 +16,9 @@
       "Bash(curl:*)",
       "WebFetch(domain:substack.com)",
       "Bash(gh repo view:*)",
-      "Bash(gh pr view:*)"
+      "Bash(gh pr view:*)",
+      "WebFetch(domain:www.namecheap.com)",
+      "WebFetch(domain:x.com)"
     ]
   }
 }

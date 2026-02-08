@@ -202,24 +202,103 @@ document.querySelectorAll('.albums[data-drive-folder]').forEach(async container 
 });
 
 // ---- Data-driven writing rendering ----
+function renderWritingItem(item) {
+  const href = item.slug ? `writing.html?slug=${item.slug}` : item.link;
+  const isExternal = !item.slug;
+  return `
+    <a class="writing-item" href="${href}"${isExternal ? ' target="_blank" rel="noopener"' : ''}>
+      <div class="writing-item__meta">
+        <span class="writing-item__date">${item.date}</span>
+        ${item.type ? `<span class="writing-item__type">${item.type}</span>` : ''}
+      </div>
+      <h3 class="writing-item__title">${item.title}</h3>
+      ${item.excerpt ? `<p class="writing-item__excerpt">${item.excerpt}</p>` : ''}
+      <span class="writing-item__read">Read &rarr;</span>
+    </a>
+  `;
+}
+
 document.querySelectorAll('.writing-list[data-source]').forEach(container => {
   showLoader(container);
   fetch(container.dataset.source)
     .then(res => res.json())
     .then(items => {
-      container.innerHTML = items.map(item => `
-        <a class="writing-item" href="${item.link}" target="_blank" rel="noopener">
-          <div class="writing-item__meta">
-            <span class="writing-item__date">${item.date}</span>
-            ${item.type ? `<span class="writing-item__type">${item.type}</span>` : ''}
-          </div>
-          <h3 class="writing-item__title">${item.title}</h3>
-          ${item.excerpt ? `<p class="writing-item__excerpt">${item.excerpt}</p>` : ''}
-          <span class="writing-item__read">Read &rarr;</span>
-        </a>
-      `).join('');
+      const allTypes = [...new Set(items.map(i => i.type).filter(Boolean))];
+
+      const filterBar = document.createElement('div');
+      filterBar.className = 'writing-filters';
+      filterBar.innerHTML = `
+        <input type="text" class="filter-search" placeholder="Search...">
+        ${allTypes.length > 1 ? `
+          <button class="writing-filter active" data-type="">All</button>
+          ${allTypes.map(t => `<button class="writing-filter" data-type="${t}">${t}</button>`).join('')}
+        ` : ''}
+      `;
+      container.parentNode.insertBefore(filterBar, container);
+
+      let activeType = '';
+      let searchQuery = '';
+
+      function filterAndRender() {
+        const filtered = items.filter(item => {
+          const matchesType = !activeType || item.type === activeType;
+          const matchesSearch = !searchQuery ||
+            item.title.toLowerCase().includes(searchQuery) ||
+            (item.date || '').toLowerCase().includes(searchQuery) ||
+            (item.type || '').toLowerCase().includes(searchQuery);
+          return matchesType && matchesSearch;
+        });
+        container.innerHTML = filtered.length
+          ? filtered.map(renderWritingItem).join('')
+          : '<p class="filter-empty">No writings found.</p>';
+      }
+
+      filterBar.querySelectorAll('.writing-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBar.querySelector('.writing-filter.active').classList.remove('active');
+          btn.classList.add('active');
+          activeType = btn.dataset.type;
+          filterAndRender();
+        });
+      });
+
+      filterBar.querySelector('.filter-search').addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        filterAndRender();
+      });
+
+      container.innerHTML = items.map(renderWritingItem).join('');
     });
 });
+
+// ---- Writing page renderer ----
+const writingPage = document.getElementById('writing-page');
+if (writingPage) {
+  const slug = new URLSearchParams(window.location.search).get('slug');
+  if (slug) {
+    showLoader(writingPage);
+    fetch('data/writings.json')
+      .then(res => res.json())
+      .then(items => {
+        const item = items.find(i => i.slug === slug);
+        if (!item) {
+          writingPage.innerHTML = '<p>Writing not found.</p>';
+          return;
+        }
+        document.title = `${item.title} — Ibrahim Saad`;
+        writingPage.innerHTML = `
+          <header class="writing-page__header">
+            ${item.type ? `<span class="writing-item__type">${item.type}</span>` : ''}
+            <h1>${item.title}</h1>
+            <time class="writing-page__date">${item.date}</time>
+          </header>
+          <div class="writing-page__body">
+            ${item.content.map(p => `<p>${p}</p>`).join('')}
+          </div>
+        `;
+      });
+  }
+}
 
 // ---- Link label helper ----
 function linkLabel(url) {
