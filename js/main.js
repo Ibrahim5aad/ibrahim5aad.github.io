@@ -321,6 +321,7 @@ function linkLabel(url) {
     if (u.hostname.includes('youtube.com') || u.hostname.includes('youtu.be')) return 'YouTube';
     if (u.hostname.includes('npmjs.com')) return 'npm Package';
     if (u.hostname.includes('nuget.org')) return 'NuGet Package';
+    if (u.hostname.includes('bim-quests')) return 'Play game';
     return 'Website';
   } catch { return 'View'; }
 }
