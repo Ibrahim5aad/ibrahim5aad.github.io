@@ -223,6 +223,15 @@ document.querySelectorAll('.writing-list[data-source]').forEach(container => {
   fetch(container.dataset.source)
     .then(res => res.json())
     .then(items => {
+      // Sort by date, newest first
+      const months = { january:0, february:1, march:2, april:3, may:4, june:5, july:6, august:7, september:8, october:9, november:10, december:11 };
+      items.sort((a, b) => {
+        const pa = (a.date || '').split(' '), pb = (b.date || '').split(' ');
+        const da = new Date(parseInt(pa[1]) || 0, months[pa[0].toLowerCase()] || 0);
+        const db = new Date(parseInt(pb[1]) || 0, months[pb[0].toLowerCase()] || 0);
+        return db - da;
+      });
+
       const allTypes = [...new Set(items.map(i => i.type).filter(Boolean))];
 
       const filterBar = document.createElement('div');
