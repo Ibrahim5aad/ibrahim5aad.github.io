@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import projects from '../data/projects.json';
+---
+
+<Layout title="Projects — Ibrahim Saad">
+  <div class="container">
+    <header class="page-header">
+      <h1>Personal Projects</h1>
+      <p>Side projects and open-source work.</p>
+    </header>
+
+    <div class="card-list" id="card-list">
+      {projects.map(project => <Card {...project} />)}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { initCardFilters } from '../scripts/filters';
+  initCardFilters(document.getElementById('card-list')!);
+</script>

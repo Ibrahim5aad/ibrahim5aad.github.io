@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  date: string;
+  type?: string;
+  excerpt?: string;
+  slug?: string;
+  link?: string;
+}
+
+const { title, date, type, excerpt, slug, link } = Astro.props;
+const href = slug ? `/writings/${slug}` : link;
+const isExternal = !slug;
+---
+
+<a
+  class="writing-item"
+  href={href}
+  data-type={type || ''}
+  data-title={title}
+  data-date={date}
+  {...(isExternal ? { target: '_blank', rel: 'noopener' } : {})}
+>
+  <div class="writing-item__meta">
+    <span class="writing-item__date">{date}</span>
+    {type && <span class="writing-item__type">{type}</span>}
+  </div>
+  <h3 class="writing-item__title">{title}</h3>
+  {excerpt && <p class="writing-item__excerpt">{excerpt}</p>}
+  <span class="writing-item__read">Read &rarr;</span>
+</a>

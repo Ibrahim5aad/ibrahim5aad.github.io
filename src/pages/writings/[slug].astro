@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allWritings = await getCollection('writings');
+  // Only generate pages for writings that have body content (no external link)
+  return allWritings
+    .filter(w => !w.data.link)
+    .map(w => ({
+      params: { slug: w.id.replace(/\.md$/, '') },
+      props: { entry: w },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={`${entry.data.title} — Ibrahim Saad`}>
+  <div class="container">
+    <article class="writing-page">
+      <header class="writing-page__header">
+        {entry.data.type && <span class="writing-item__type">{entry.data.type}</span>}
+        <h1>{entry.data.title}</h1>
+        <time class="writing-page__date">{entry.data.date}</time>
+      </header>
+      <div class="writing-page__body">
+        <Content />
+      </div>
+    </article>
+  </div>
+</Layout>

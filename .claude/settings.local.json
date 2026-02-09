@@ -18,7 +18,11 @@
       "Bash(gh repo view:*)",
       "Bash(gh pr view:*)",
       "WebFetch(domain:www.namecheap.com)",
-      "WebFetch(domain:x.com)"
+      "WebFetch(domain:x.com)",
+      "Bash(nslookup:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npx astro build)"
     ]
   }
 }

@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags?: string[];
+  link?: string;
+  links?: string[];
+  year?: string;
+  context?: string;
+  inProgress?: boolean;
+}
+
+const { title, description, tags = [], link, links, year, context, inProgress } = Astro.props;
+
+const allLinks = links || (link ? [link] : []);
+
+function linkLabel(url: string): string {
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes('github.com')) {
+      if (/\/pull\/\d+/.test(u.pathname)) return 'Pull Request';
+      if (/\/issues\/\d+/.test(u.pathname)) return 'GitHub Issue';
+      return 'GitHub Repo';
+    }
+    if (u.hostname.includes('youtube.com') || u.hostname.includes('youtu.be')) return 'YouTube';
+    if (u.hostname.includes('npmjs.com')) return 'npm Package';
+    if (u.hostname.includes('nuget.org')) return 'NuGet Package';
+    if (u.hostname.includes('bim-quests')) return 'Play game';
+    return 'Website';
+  } catch { return 'View'; }
+}
+---
+
+<article
+  class="card"
+  data-tags={JSON.stringify(tags)}
+  data-title={title}
+  data-description={description}
+  data-context={context || ''}
+>
+  <div class="card__header">
+    <h3 class="card__title">{title}</h3>
+    {inProgress && <span class="card__status">In Progress</span>}
+    {year && <span class="card__year">{year}</span>}
+  </div>
+  {context && <div class="card__meta">{context}</div>}
+  <p class="card__description">{description}</p>
+  {tags.length > 0 && (
+    <div class="card__tags">
+      {tags.map(tag => <span class="card__tag">{tag}</span>)}
+    </div>
+  )}
+  {allLinks.length > 0 && (
+    <div class="card__links">
+      {allLinks.map(url => (
+        <a class="card__link" href={url} target="_blank" rel="noopener">
+          {linkLabel(url)} &rarr;
+        </a>
+      ))}
+    </div>
+  )}
+</article>

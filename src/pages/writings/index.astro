@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import WritingItem from '../../components/WritingItem.astro';
+import { getCollection } from 'astro:content';
+
+const allWritings = await getCollection('writings');
+
+// Parse date for sorting (newest first)
+const months: Record<string, number> = {
+  january: 0, february: 1, march: 2, april: 3, may: 4, june: 5,
+  july: 6, august: 7, september: 8, october: 9, november: 10, december: 11,
+};
+
+const sorted = allWritings.sort((a, b) => {
+  const pa = a.data.date.split(' ');
+  const pb = b.data.date.split(' ');
+  const da = new Date(parseInt(pa[1]) || 0, months[pa[0].toLowerCase()] || 0);
+  const db = new Date(parseInt(pb[1]) || 0, months[pb[0].toLowerCase()] || 0);
+  return db.getTime() - da.getTime();
+});
+---
+
+<Layout title="Writings — Ibrahim Saad">
+  <div class="container">
+    <header class="page-header">
+      <h1>Writings</h1>
+      <p>Poetry, essays, notes, and other written pieces.</p>
+    </header>
+
+    <div class="writing-list" id="writing-list">
+      {sorted.map(writing => (
+        <WritingItem
+          title={writing.data.title}
+          date={writing.data.date}
+          type={writing.data.type}
+          excerpt={writing.data.excerpt}
+          slug={writing.data.link ? undefined : writing.id.replace(/\.md$/, '')}
+          link={writing.data.link}
+        />
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { initWritingFilters } from '../../scripts/filters';
+  initWritingFilters(document.getElementById('writing-list')!);
+</script>

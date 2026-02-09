@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Photography — Ibrahim Saad">
+  <div class="container container--wide">
+    <header class="page-header">
+      <h1>Mobile Photography</h1>
+      <p>Moments captured through a phone camera.</p>
+    </header>
+
+    <div class="albums" id="albums" data-drive-folder="1CuGD_0Y6LmYcZ64JfX35bxBKNl75cJOW" data-drive-key="AIzaSyDYNk6WINIaAu4flm7APFEfhxb5rAVmVjo" data-cover="last"></div>
+  </div>
+
+  <div class="lightbox">
+    <button class="lightbox__close" aria-label="Close">&times;</button>
+    <img src="" alt="">
+  </div>
+</Layout>
+
+<script>
+  // ---- Lightbox ----
+  const lightbox = document.querySelector('.lightbox') as HTMLElement | null;
+  const lightboxImg = document.querySelector('.lightbox img') as HTMLImageElement | null;
+  const lightboxClose = document.querySelector('.lightbox__close');
+
+  function openLightbox(src: string, alt?: string) {
+    if (lightbox && lightboxImg) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.classList.add('active');
+    }
+  }
+
+  if (lightbox) {
+    lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+  }
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lightbox?.classList.remove('active');
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox?.classList.remove('active');
+  });
+
+  // ---- Loading indicator ----
+  function showLoader(container: HTMLElement) {
+    container.innerHTML = '<div class="loader"><div class="loader__spinner"></div></div>';
+  }
+
+  // ---- Album rendering ----
+  interface Album {
+    title: string;
+    cover: string;
+    description: string;
+    photos: string[];
+  }
+
+  function renderAlbums(container: HTMLElement, albums: Album[]) {
+    container.innerHTML = `<div class="albums__grid">
+      ${albums.map((album, i) => `
+        <div class="album-cover" data-index="${i}">
+          <div class="album-cover__img">
+            <img src="${album.cover}" alt="${album.title}" loading="lazy" onerror="this.style.display='none'">
+            <div class="album-cover__placeholder">${album.photos.length} photos</div>
+          </div>
+          <h3 class="album-cover__title">${album.title}</h3>
+          ${album.description ? `<p class="album-cover__desc">${album.description}</p>` : ''}
+        </div>
+      `).join('')}
+    </div>`;
+
+    const expandedEl = document.createElement('div');
+    expandedEl.className = 'album-expanded';
+    expandedEl.style.display = 'none';
+    container.appendChild(expandedEl);
+
+    const gridEl = container.querySelector('.albums__grid') as HTMLElement;
+
+    function openAlbum(index: number, scroll: boolean) {
+      const album = albums[index];
+      if (!album) return;
+      gridEl.style.display = 'none';
+      expandedEl.style.display = 'block';
+      expandedEl.innerHTML = `
+        <button class="album-expanded__back">&larr; All Albums</button>
+        <h2 class="album-expanded__title">${album.title}</h2>
+        ${album.description ? `<p class="album-expanded__desc">${album.description}</p>` : ''}
+        <div class="gallery__grid">
+          ${album.photos.map(photo => `
+            <div class="gallery__item">
+              <img src="${photo}" alt="${album.title}" loading="lazy" onerror="this.style.display='none'">
+              <div class="gallery__placeholder">Photo</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      expandedEl.querySelector('.album-expanded__back')!.addEventListener('click', closeAlbum);
+
+      expandedEl.querySelectorAll('.gallery__item').forEach(item => {
+        item.addEventListener('click', () => {
+          const img = item.querySelector('img') as HTMLImageElement;
+          if (img?.src) openLightbox(img.src, img.alt);
+        });
+      });
+
+      if (scroll) window.scrollTo({ top: container.offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function closeAlbum() {
+      expandedEl.style.display = 'none';
+      gridEl.style.display = 'grid';
+      history.pushState(null, '', location.pathname);
+    }
+
+    container.querySelectorAll('.album-cover').forEach(cover => {
+      cover.addEventListener('click', () => {
+        const index = parseInt((cover as HTMLElement).dataset.index!);
+        const slug = albums[index].title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        history.pushState({ album: index }, '', `#${slug}`);
+        openAlbum(index, true);
+      });
+    });
+
+    window.addEventListener('popstate', () => {
+      const hash = location.hash.slice(1);
+      if (hash) {
+        const index = albums.findIndex(a => a.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === hash);
+        if (index >= 0) openAlbum(index, false);
+      } else {
+        expandedEl.style.display = 'none';
+        gridEl.style.display = 'grid';
+      }
+    });
+
+    const initHash = location.hash.slice(1);
+    if (initHash) {
+      const index = albums.findIndex(a => a.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') === initHash);
+      if (index >= 0) openAlbum(index, false);
+    }
+  }
+
+  // ---- Google Drive album source ----
+  async function driveListFiles(folderId: string, apiKey: string) {
+    let all: any[] = [];
+    let pageToken = '';
+    do {
+      let url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&key=${apiKey}&fields=nextPageToken,files(id,name,mimeType)&pageSize=100&orderBy=name`;
+      if (pageToken) url += `&pageToken=${pageToken}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message);
+      all = all.concat(data.files || []);
+      pageToken = data.nextPageToken || '';
+    } while (pageToken);
+    return all;
+  }
+
+  const container = document.getElementById('albums');
+  if (container) {
+    const folderId = container.dataset.driveFolder;
+    const apiKey = container.dataset.driveKey;
+    if (apiKey && folderId) {
+      showLoader(container);
+      try {
+        const rootContents = await driveListFiles(folderId, apiKey);
+        const folders = rootContents
+          .filter((f: any) => f.mimeType === 'application/vnd.google-apps.folder')
+          .sort((a: any, b: any) => a.name.localeCompare(b.name));
+
+        const albums: Album[] = [];
+        for (const folder of folders) {
+          const files = await driveListFiles(folder.id, apiKey);
+          const images = files
+            .filter((f: any) => f.mimeType.startsWith('image/'))
+            .sort((a: any, b: any) => a.name.localeCompare(b.name));
+          if (images.length === 0) continue;
+
+          const cdnBase = 'https://res.cloudinary.com/djwqx137d/image/fetch';
+          const driveSrc = (id: string) => `https://lh3.googleusercontent.com/d/${id}`;
+          const photoUrls = images.map((img: any) => `${cdnBase}/w_1200,c_limit,f_auto,q_auto/${driveSrc(img.id)}`);
+
+          const coverFile = images.find((img: any) => /^cover\b/i.test(img.name));
+          let coverImg: any;
+          if (coverFile) {
+            coverImg = coverFile;
+          } else {
+            const coverMode = container.dataset.cover || 'first';
+            const n = parseInt(coverMode);
+            if (!isNaN(n)) coverImg = images[Math.min(n - 1, images.length - 1)] || images[0];
+            else if (coverMode === 'last') coverImg = images[images.length - 1];
+            else if (coverMode === 'random') coverImg = images[Math.floor(Math.random() * images.length)];
+            else coverImg = images[0];
+          }
+
+          albums.push({
+            title: folder.name,
+            cover: `${cdnBase}/w_400,c_limit,f_auto,q_auto/${driveSrc(coverImg.id)}`,
+            description: '',
+            photos: photoUrls,
+          });
+        }
+
+        renderAlbums(container, albums);
+      } catch (err) {
+        console.error('Failed to load albums from Google Drive:', err);
+      }
+    }
+  }
+</script>
