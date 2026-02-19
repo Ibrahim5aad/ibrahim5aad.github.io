@@ -7,16 +7,31 @@
     "inProgress": true
   },
   {
+    "title": "Cross-platform xbim Geometry Engine",
+    "description": "Porting the xBIM Geometry Engine from C++/CLI to a cross-platform C/P-Invoke architecture.",
+    "tags": ["C#", "C++", ".NET", "BIM", "IFC", "Open Source"],
+    "link": "https://github.com/Ibrahim5aad/XbimGeometry",
+    "inProgress": true
+  },
+  {
+    "title": "WexBlazor",
+    "description": "A Blazor component library for BIM applications wrapping the @xbim/viewer for WebGL-based 3D visualization. Features a plugin system, dockable sidebar, property aggregation, and supports standalone or platform deployment modes.",
+    "tags": ["C#", ".NET", "Blazor", "3D", "BIM", "IFC", "Open Source"],
+    "link": "https://github.com/Ibrahim5aad/Xbim.WexBlazor",
+    "inProgress": true
+  },
+  {
+    "title": "WexSDK",
+    "description": "An open-source .NET 9 SDK for BIM application development. Includes a REST API server for model management with IFC-to-wexBIM conversion, a typed HTTP client, and a reference web application.",
+    "tags": ["C#", ".NET", "Web", "BIM", "Open Source"],
+    "link": "https://github.com/Ibrahim5aad/Xbim.WexSDK",
+    "inProgress": true
+  },
+  {
     "title": "Kuhn-Munkres Algorithm",
     "description": "A Python implementation of the Hungarian Method for solving assignment problems in polynomial time. Features an interactive Tkinter GUI for matrix input and real-time solving.",
     "tags": ["Python", "Tkinter", "Algorithms"],
     "link": "https://github.com/Ibrahim5aad/kuhn-munkres-algorithm"
-  },
-  {
-    "title": "Octopus",
-    "description": "An open-source SDK and scaffold for building BIM applications with .NET 9. Includes a Blazor component library with 3D IFC viewer, a REST API server for model management, and supports standalone or full-platform modes.",
-    "tags": ["C#", ".NET", "Blazor", "Web", "BIM", "IFC", "Open Source"],
-    "link": "https://github.com/Ibrahim5aad/Octopus"
   },
   {
     "title": "Electron.js Revit Add-in",
