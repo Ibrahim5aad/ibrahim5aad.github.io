@@ -21,13 +21,6 @@
     "inProgress": true
   },
   {
-    "title": "WexSDK",
-    "description": "An open-source .NET 9 SDK for BIM application development. Includes a REST API server for model management with IFC-to-wexBIM conversion, a typed HTTP client, and a reference web application.",
-    "tags": ["C#", ".NET", "Web", "BIM", "Open Source"],
-    "link": "https://github.com/Ibrahim5aad/Xbim.WexSDK",
-    "inProgress": true
-  },
-  {
     "title": "Kuhn-Munkres Algorithm",
     "description": "A Python implementation of the Hungarian Method for solving assignment problems in polynomial time. Features an interactive Tkinter GUI for matrix input and real-time solving.",
     "tags": ["Python", "Tkinter", "Algorithms"],
